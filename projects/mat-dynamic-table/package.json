@@ -2,6 +2,18 @@
   "name": "mat-dynamic-table",
   "version": "1.0.0",
   "author": "Ardit Sinani",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "angular material",
+    "material",
+    "table",
+    "datatable"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arditsinani/mat-dynamic-table.git"
+  },
   "peerDependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/cdk": "^7.2.0",
