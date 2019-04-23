@@ -1,27 +1,30 @@
-# AngularMaterialDynamicTable
+# MaterialDynamicTable
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+This project was created with Angular and Angular Material
+It supports:
+-Server side filtering with all fields filtering
+-Server side pagination
+-Server side sorting
 
-## Development server
+## Properties
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+@Input:displayedTypeColumns:{}
+ -key:the name of the property
+ -value:the type of the property
+ -example:{ valid:"boolean", name:"string", surname:"string", age:"number", birthday:"date", details:"special" }
+ -supported types:string, array, text, long, int, double, number, date, boolean,special
 
-## Code scaffolding
+@Input:sortObject:{}
+  -key:string - the name of the default sort property
+  -direction:string - direction
+  -example: { key:"name", direction:"asc" }
+  
+@Input:api:string
+  -endpoint to make the request for the data
+  -requert type : 'POST'
+  -passes all the parameters from the columns,the current page index and page size and the sorting key and direction
+  
+@Output:onSpecial:event
+  -display the details column with a info button
+  -the info button when clicked returns the value of the selected row
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
