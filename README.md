@@ -44,8 +44,8 @@ import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
 import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
 import { FormsModule } from '@angular/forms';
 ```
-```
 The following packages are required from the library to be in the package.json of the application:
+```
   "dependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/cdk": "^7.2.0",
