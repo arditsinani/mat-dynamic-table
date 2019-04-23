@@ -7,7 +7,7 @@ It supports:
 -Server side sorting, etc.
 
 ## Properties
-
+```
 @Input:displayedTypeColumns:{}(required)
  -key:the name of the property
  -value:the type of the property
@@ -27,13 +27,13 @@ It supports:
 @Output:onSpecial:event(optional)
   -display the details column with a info button
   -the info button when clicked returns the value of the selected row
-
-Getting started
-1. Prerequisites:
+```
+## Getting started
+### 1. Prerequisites:
 Angular material: Please follow https://material.angular.io/guide/getting-started
 
 The following modules are required
-
+```
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatSortModule, MatInputModule, MatPaginatorModule,
@@ -43,9 +43,10 @@ import { MatTableModule, MatSortModule, MatInputModule, MatPaginatorModule,
 import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
 import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
 import { FormsModule } from '@angular/forms';
-
+```
+```
 The following packages are required from the library to be in the package.json of the application:
-  "peerDependencies": {
+  "dependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/cdk": "^7.2.0",
     "@angular/common": "~7.2.0",
@@ -63,13 +64,15 @@ The following packages are required from the library to be in the package.json o
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0"
   }
-
+```
 
 Details column is using material icon, so material icons may be needed in index.html: 
+```
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+  ```
 Styles are taken from the styles of the application.
 Here is an example:
+```
 @import "../node_modules/@angular/material/prebuilt-themes/purple-green.css";
 @import '~@mat-datetimepicker/core/datetimepicker/datetimepicker-theme.scss';
 
@@ -79,11 +82,15 @@ $mat-dynamic-table-warn: mat-palette($mat-red);
 $mat-dynamic-table-theme: mat-dark-theme($mat-dynamic-table-primary, $mat-dynamic-table-accent, $mat-dynamic-table-warn);
 
 @include mat-datetimepicker-theme($mat-dynamic-table-theme);
+```
 
-2. Install mat-dynamic-table:
+### 2. Install mat-dynamic-table:
+```
 npm install mat-dynamic-table --save
+```
 
-3. Import the installed libraries:
+### 3. Import the installed library:
+```
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 ...
@@ -101,16 +108,18 @@ import { AppComponent } from './app';
   ],
 })
 export class AppModule {}
-
-4. Include mat-dynamic-table selector in your component:
+```
+### 4. Include mat-dynamic-table selector in your component:
+```
  <mat-dynamic-table [sortObject]='{ key:"name", direction:"asc" }' [displayedTypeColumns]='{ valid:"boolean", name:"string", surname:"string", age:"number", birthday:"date", details:"special" }' api="http://localhost:3000/post" (onSpecial)="onSpecialFunc($event)"></mat-dynamic-table>
+ ```
  
- 
- Server Side
+ ## Server Side
  The library support server side filtering,pagination and sorting,but the backend api should support it to.
  The service of the api is build using rxjs.
- IMPORTANT:
+ ### IMPORTANT:
  The following attributes are required from response:
+ ```
  data:Array - containing the objects that has to be displayed
  totals:{
   length:any - the length of the documents with the current filters 
@@ -122,3 +131,4 @@ export class AppModule {}
     length:4
   }
  }
+ ```
