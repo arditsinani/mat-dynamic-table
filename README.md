@@ -124,7 +124,9 @@ export class AppModule {}
  totals:{
   length:any - the length of the documents with the current filters 
  }
- -example: 
+ ```
+ Example:
+ ``` 
  {
   data:[{},{},{},{}],
   totals:{
