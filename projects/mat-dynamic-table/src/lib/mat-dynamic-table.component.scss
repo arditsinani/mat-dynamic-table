@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+mat-cell{
+  display:flex !important;
+  justify-content:center !important;
+}
+mat-header-cell {
+  display:flex;
+  justify-content:center;
+  place-content: center;
+}

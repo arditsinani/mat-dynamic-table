@@ -134,6 +134,41 @@
           }
         }
       }
+    },
+    "mat-dynamic-table": {
+      "root": "projects/mat-dynamic-table",
+      "sourceRoot": "projects/mat-dynamic-table/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/mat-dynamic-table/tsconfig.lib.json",
+            "project": "projects/mat-dynamic-table/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mat-dynamic-table/src/test.ts",
+            "tsConfig": "projects/mat-dynamic-table/tsconfig.spec.json",
+            "karmaConfig": "projects/mat-dynamic-table/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/mat-dynamic-table/tsconfig.lib.json",
+              "projects/mat-dynamic-table/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-material-dynamic-table"

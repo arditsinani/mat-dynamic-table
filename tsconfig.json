@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "mat-dynamic-table": [
+        "dist/mat-dynamic-table"
+      ],
+      "mat-dynamic-table/*": [
+        "dist/mat-dynamic-table/*"
+      ]
+    }
   }
 }

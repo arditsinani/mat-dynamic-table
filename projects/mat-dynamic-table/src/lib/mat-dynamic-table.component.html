@@ -1,0 +1,80 @@
+<div class="example-container mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container *ngFor="let disCol of typeColumns | keyvalue; let i = index" matColumnDef={{disCol.key}}>
+
+      <mat-header-cell *matHeaderCellDef> 
+
+        <div *ngIf="disCol.key != 'details'" style="width: 25%"></div>    
+
+          <mat-form-field *ngIf="disCol.value=='date' && disCol.key!=='details'" style="text-align:center;width: 75%" (click)="$event.stopPropagation();" title="{{formatHeader(disCol.key)}}">
+            <mat-datetimepicker-toggle [for]="datetimePicker2" matSuffix></mat-datetimepicker-toggle>
+            <mat-datetimepicker #datetimePicker2 type="datetime" startView="month" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+            <input matInput placeholder={{formatHeader(disCol.key)}} name="startTransactionTimeStamp" #startTransactionTimeStamp (dateInput)="searchFilter()"
+              [min]="today" [max]="tomorrow" [matDatetimepicker]="datetimePicker2" autocomplete="false" [(ngModel)]=valueColumns[disCol.key]>
+          </mat-form-field>
+          
+          <mat-form-field *ngIf="disCol.value=='boolean' && disCol.key!=='details'" style="text-align:center;width: 75%;"(click)="$event.stopPropagation();" title="{{formatHeader(disCol.key)}}">
+            <mat-select [(ngModel)]="valueColumns[disCol.key]" placeholder="{{formatHeader(disCol.key)}}" style="text-align: center;width:75%"
+              (selectionChange)="searchFilter()" name={{disCol.key}} #{{disCol.key}}>
+              <mat-option value="">All</mat-option> 
+              <mat-option value="true">True</mat-option> 
+              <mat-option value="false">False</mat-option> 
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="disCol.value=='text' && disCol.key!=='details'" style="text-align:center;width: 75%" (click)="$event.stopPropagation();" title="{{formatHeader(disCol.key)}}">
+            <input matInput type="text" class="form-control" style="text-align:center;border: none !important" placeholder={{formatHeader(disCol.key)}} (change)="searchFilter()" name={{disCol.key}} #{{disCol.key}} [(ngModel)]=valueColumns[disCol.key] >
+          </mat-form-field>
+
+          <mat-form-field *ngIf="disCol.value=='number' && disCol.key!=='details'" style="text-align:center;width: 75%" (click)="$event.stopPropagation();" title="{{formatHeader(disCol.key)}}">
+              <input matInput type="number" class="form-control" style="text-align:center;border: none !important" placeholder={{formatHeader(disCol.key)}} (change)="searchFilter()" name={{disCol.key}} #{{disCol.key}} [(ngModel)]=valueColumns[disCol.key] >
+          </mat-form-field>
+        <h6 *ngIf="disCol.key=='details'" class="headerH6" title="{{formatHeader(disCol.key)}}"> Details </h6>
+        <div *ngIf="disCol.key != 'details'" style="width: 25%" mat-sort-header={{disCol.key}} (click)="searchFilter()"></div>
+      </mat-header-cell>
+
+      <mat-cell style="text-align:center" *matCellDef="let element;let i = index" [style.visibility]="dataStatus==='loaded'?'visible':'hidden'">
+        <span *ngIf="dataStatus == 'loaded' && disCol.value=='date'">{{formatDate(element[disCol.key])}}</span>
+        <span *ngIf="dataStatus == 'loaded' && disCol.key == 'details'" (click)="onSpecialClick(element)">        
+          <i class="material-icons" *ngIf="!element[disCol.key]">info</i>{{element[disCol.key] ? element[disCol.key] : '' }}
+        </span> 
+        <span *ngIf="dataStatus == 'loaded' && disCol.value != 'date'">{{element[disCol.key]}}</span>
+      </mat-cell>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <div *ngIf="dataStatus == 'loading'" >
+      <mat-grid-list cols="4" rowHeight="100px">
+        <mat-grid-tile  [colspan]="1" [rowspan]="2"></mat-grid-tile>
+        <mat-grid-tile  [colspan]="2" [rowspan]="2"><mat-spinner></mat-spinner></mat-grid-tile>
+        <mat-grid-tile  [colspan]="1" [rowspan]="2"></mat-grid-tile>
+      </mat-grid-list>
+  </div>
+
+  <div *ngIf="dataStatus == 'noData'" >
+      <mat-grid-list cols="4" rowHeight="100px">
+        <mat-grid-tile  [colspan]="1" [rowspan]="1"></mat-grid-tile>
+        <mat-grid-tile  [colspan]="2" [rowspan]="1"><h3>No Data for the selected filters</h3></mat-grid-tile>
+        <mat-grid-tile  [colspan]="1" [rowspan]="1"></mat-grid-tile>
+      </mat-grid-list>
+  </div>
+
+  <div *ngIf="dataStatus == 'error'" >
+      <mat-grid-list cols="4" rowHeight="100px">
+        <mat-grid-tile  [colspan]="1" [rowspan]="1"></mat-grid-tile>
+        <mat-grid-tile  [colspan]="2" [rowspan]="1"><h3>{{ error }}</h3></mat-grid-tile>
+        <mat-grid-tile  [colspan]="1" [rowspan]="1"></mat-grid-tile>
+      </mat-grid-list>
+  </div>
+
+  <mat-paginator #paginator [length]="resultsLength" [pageSize]="10" [pageSizeOptions]="[10,20,50,100]" (page)="searchFilter()" style="width: 100%;"></mat-paginator>
+
+</div>

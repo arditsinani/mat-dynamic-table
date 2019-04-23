@@ -1,11 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatDynamicTableComponent } from './mat-dynamic-table.component';
+
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { MatDynamicTable } from 'mat-dynamic-table'
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatSortModule, MatInputModule, MatPaginatorModule,
          MatButtonModule, MatSelectModule, MatDatepickerModule,
@@ -15,31 +14,28 @@ import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
 import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [MatDynamicTableComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    MatDynamicTable,
-    MatTableModule,
-    MatSortModule, 
-    MatInputModule, 
-    MatPaginatorModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     MatButtonModule,
-    MatSelectModule, 
+    MatSortModule,
+    MatTableModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule, 
+    MatNativeDateModule,
     MatProgressSpinnerModule,
-    MatListModule, MatFormFieldModule,
+    MatListModule,
+    MatDatetimepickerModule,
+    MatMomentDatetimeModule,
+    MatFormFieldModule,
     MatIconModule,
     MatGridListModule,
-    BrowserAnimationsModule,
-    MatMomentDatetimeModule,
-    MatDatetimepickerModule,
     FormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [MatDynamicTableComponent]
 })
-export class AppModule { }
+export class MatDynamicTable { }
